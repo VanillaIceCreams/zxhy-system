@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zxhy.mapper.FiveMinuteMapper" >
+  <resultMap id="BaseResultMap" type="com.zxhy.bean.bo.FiveMinute" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="M_DATE" property="mDate" jdbcType="DATE" />
+    <result column="MINUTE" property="minute" jdbcType="INTEGER" />
+    <result column="M_BEGIN" property="mBegin" jdbcType="DECIMAL" />
+    <result column="M_END" property="mEnd" jdbcType="DECIMAL" />
+    <result column="M_HIGH" property="mHigh" jdbcType="DECIMAL" />
+    <result column="M_LOW" property="mLow" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CODE, M_DATE, MINUTE, M_BEGIN, M_END, M_HIGH, M_LOW
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from five_minute
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByParam"  resultMap="BaseResultMap" parameterType="com.zxhy.bean.bo.FiveMinute" >
+    select
+    <include refid="Base_Column_List" />
+    from five_minute
+    <where>
+      <if test="id != null" >
+        ID=#{id,jdbcType=BIGINT}
+      </if>
+      <if test="code != null" >
+        and CODE=#{code,jdbcType=VARCHAR}
+      </if>
+      <if test="mDate != null" >
+        and M_DATE=#{mDate,jdbcType=DATE}
+      </if>
+      <if test="minute != null" >
+        and MINUTE=#{minute,jdbcType=INTEGER}
+      </if>
+      <if test="mBegin != null" >
+        and M_BEGIN=#{mBegin,jdbcType=DECIMAL}
+      </if>
+      <if test="mEnd != null" >
+        and M_END=#{mEnd,jdbcType=DECIMAL}
+      </if>
+      <if test="mHigh != null" >
+        and M_HIGH=#{mHigh,jdbcType=DECIMAL}
+      </if>
+      <if test="mLow != null" >
+        and  M_LOW=#{mLow,jdbcType=DECIMAL}
+      </if>
+    </where>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from five_minute
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zxhy.bean.bo.FiveMinute" >
+    insert into five_minute (ID, CODE, M_DATE, 
+      MINUTE, M_BEGIN, M_END, 
+      M_HIGH, M_LOW)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{mDate,jdbcType=DATE}, 
+      #{minute,jdbcType=INTEGER}, #{mBegin,jdbcType=DECIMAL}, #{mEnd,jdbcType=DECIMAL}, 
+      #{mHigh,jdbcType=DECIMAL}, #{mLow,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zxhy.bean.bo.FiveMinute" >
+    insert into five_minute
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="mDate != null" >
+        M_DATE,
+      </if>
+      <if test="minute != null" >
+        MINUTE,
+      </if>
+      <if test="mBegin != null" >
+        M_BEGIN,
+      </if>
+      <if test="mEnd != null" >
+        M_END,
+      </if>
+      <if test="mHigh != null" >
+        M_HIGH,
+      </if>
+      <if test="mLow != null" >
+        M_LOW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="mDate != null" >
+        #{mDate,jdbcType=DATE},
+      </if>
+      <if test="minute != null" >
+        #{minute,jdbcType=INTEGER},
+      </if>
+      <if test="mBegin != null" >
+        #{mBegin,jdbcType=DECIMAL},
+      </if>
+      <if test="mEnd != null" >
+        #{mEnd,jdbcType=DECIMAL},
+      </if>
+      <if test="mHigh != null" >
+        #{mHigh,jdbcType=DECIMAL},
+      </if>
+      <if test="mLow != null" >
+        #{mLow,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxhy.bean.bo.FiveMinute" >
+    update five_minute
+    <set >
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="mDate != null" >
+        M_DATE = #{mDate,jdbcType=DATE},
+      </if>
+      <if test="minute != null" >
+        MINUTE = #{minute,jdbcType=INTEGER},
+      </if>
+      <if test="mBegin != null" >
+        M_BEGIN = #{mBegin,jdbcType=DECIMAL},
+      </if>
+      <if test="mEnd != null" >
+        M_END = #{mEnd,jdbcType=DECIMAL},
+      </if>
+      <if test="mHigh != null" >
+        M_HIGH = #{mHigh,jdbcType=DECIMAL},
+      </if>
+      <if test="mLow != null" >
+        M_LOW = #{mLow,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxhy.bean.bo.FiveMinute" >
+    update five_minute
+    set CODE = #{code,jdbcType=VARCHAR},
+      M_DATE = #{mDate,jdbcType=DATE},
+      MINUTE = #{minute,jdbcType=INTEGER},
+      M_BEGIN = #{mBegin,jdbcType=DECIMAL},
+      M_END = #{mEnd,jdbcType=DECIMAL},
+      M_HIGH = #{mHigh,jdbcType=DECIMAL},
+      M_LOW = #{mLow,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <insert id ="batchInsert" parameterType="java.util.List" >
+    insert into five_minute (ID, CODE, M_DATE,
+    MINUTE, M_BEGIN, M_END,
+    M_HIGH, M_LOW)
+    values
+    <foreach collection ="list" item="minute" index= "index" separator =",">
+           (#{minute.id,jdbcType=BIGINT}, #{minute.code,jdbcType=VARCHAR}, #{minute.mDate,jdbcType=DATE},
+    #{minute.minute,jdbcType=INTEGER}, #{minute.mBegin,jdbcType=DECIMAL}, #{minute.mEnd,jdbcType=DECIMAL},
+    #{minute.mHigh,jdbcType=DECIMAL}, #{minute.mLow,jdbcType=DECIMAL})
+    </foreach >
+  </insert >
+</mapper>
